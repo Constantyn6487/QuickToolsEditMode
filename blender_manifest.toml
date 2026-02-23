@@ -1,0 +1,16 @@
+schema_version = "1.0.0"
+id = "quicktoolseditmode"
+version = "1.7.0"
+name = "QuickToolsEditMode"
+tagline = "Fast Edge Crease, Bevel Weight (3 values) and Shading, Apply Transform access in Edit Mode"
+maintainer = "Constantyn Wasilyev (Constantyn6487) <Constantyn6487@gmail.com>"
+type = "add-on"
+platforms = ["windows-x64", "macosx-arm64", "macosx-x64", "linux-x64"]
+blender_version_min = "4.2.0"
+license = ["GPL-3.0-or-later"]
+repository = "https://github.com/Constantyn6487/QuickToolsEditMode"
+documentation = "https://github.com/Constantyn6487/QuickToolsEditMode/wiki"
+
+
+[build]
+include = ["*.py", "QTEMicon.png"]
