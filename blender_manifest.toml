@@ -9,7 +9,7 @@ platforms = ["windows-x64", "macosx-arm64", "macosx-x64", "linux-x64"]
 blender_version_min = "4.2.0"
 license = ["GPL-3.0-or-later"]
 repository = "https://github.com/Constantyn6487/QuickToolsEditMode"
-documentation = "https://github.com/Constantyn6487/QuickToolsEditMode/wiki"
+documentation = "https://github.com/Constantyn6487/QuickToolsEditMode"
 
 
 [build]
