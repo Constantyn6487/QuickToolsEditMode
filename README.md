@@ -22,7 +22,7 @@ While in **Edit Mode**, simply **Right-Click (RMB)**. You will find the **Quick 
 ## 📜 License
 This project is licensed under the **GNU General Public License v3.0**.
 
-**____________________________________________________________________**
+**Ru________________________________________________________________________**
 
 # QuickToolsEditMode (v1.7.0) 🛠️
 
