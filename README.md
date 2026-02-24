@@ -1,4 +1,4 @@
-![description](https://github.com/Constantyn6487/Tutor_readme_outsidefile/blob/main/preview.png)
+![description](https://github.com/user-attachments/assets/65b9df17-350b-4563-b132-905e3b422e44)
 
 
 # QuickToolsEditMode (v1.7.0) 🛠️
