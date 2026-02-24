@@ -21,3 +21,9 @@ While in **Edit Mode**, simply **Right-Click (RMB)**. You will find the **Quick 
 
 ## 📜 License
 This project is licensed under the **GNU General Public License v3.0**.
+
+#№ 🧱 Possible errors: 
+- **Double-clicking the 0.5 button changes the weight to 1.**
+- **It doesn't set the weight to 0.5, if the weight is 1, you need to click the 0 button and then click the 1 button.**
+
+
