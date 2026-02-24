@@ -1,4 +1,5 @@
-![description](https://github.com/Constantyn6487/Tutor_readme_outsidefile/blob/f9930cb92a04cbf00172e73f3b56c8fd46dfb89b/preview.png)
+![description](https://github.com/Constantyn6487/Tutor_readme_outsidefile/blob/main/preview.png)
+
 
 # QuickToolsEditMode (v1.7.0) 🛠️
 
