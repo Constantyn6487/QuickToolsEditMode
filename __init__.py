@@ -1,6 +1,3 @@
-# ########################################################################
-# Quick Tools Edit Mode
-# 
 # Copyright (C) 2024 Constantyn Wasilyev (Constantyn6487)
 # <Constantyn6487@gmail.com>
 # Originally an addon: 2023-Fast Panel Button, 2024-Quick Panel Button.
@@ -22,361 +19,286 @@
 
 bl_info = {
     "name": "Quick Tools Edit Mode",
-    "blender": (4, 5, 0),
+    "blender": (4, 2, 0),
     "location": "View3D > Sidebar > Item",
     "category": "Object",
-    "version": (1, 7),
+    "version": (1, 8, 4),
     "author": "Constantyn Wasilyev (Constantyn6487)",
     "description": "Fast Edge Crease, Bevel Weight (3 values) and Shading, Apply Transform access in Edit Mode",
 }
 
-
 import bpy
-from bpy.types import (Panel, Operator, AddonPreferences, PropertyGroup, Mesh, Menu)
-from bpy.props import (StringProperty, FloatProperty)
+import bmesh
+import mathutils
+from bpy.types import (Panel, Operator, AddonPreferences, PropertyGroup, Menu)
+from bpy.props import (StringProperty, FloatProperty, BoolProperty, PointerProperty)
 from bpy.utils import (register_class, unregister_class)
 
-################################################
-###########ICON VERIFICATION FUNCTION###########
+#ICON VERIFICATION FUNCTION 
 def get_icon(preferred, fallback):
-    """Checks for the icon in the system. If not, it returns an empty string."""
-#We get a list of all available icon names in the current version of Blender
     icons = bpy.types.UILayout.bl_rna.functions['prop'].parameters['icon'].enum_items
     if preferred in icons: return preferred
     if fallback in icons: return fallback
     return 'NONE'
+
+#SETTINGS STORAGE 
+class QuickToolsSettings(PropertyGroup):
+    affect_edges: BoolProperty(
+        name="Edges",
+        description="Apply weight to edges",
+        default=True
+    ) # type: ignore
+    affect_vertices: BoolProperty(
+        name="Vertices",
+        description="Apply weight to vertices",
+        default=False
+    ) # type: ignore
+
+#Logic of Work Weight Bevel/Crease
+def apply_weight_smart(context, value, edge_attr, vert_attr):
+    obj = context.edit_object
+    me = obj.data
+    bm = bmesh.from_edit_mesh(me)
+    settings = context.scene.quick_tools_settings
+    if not settings.affect_edges and not settings.affect_vertices:
+        return {'CANCELLED'}
+    if not any(e.select for e in bm.edges) and not any(v.select for v in bm.verts):
+        return {'CANCELLED'}
+    if settings.affect_edges:
+        layer_e = bm.edges.layers.float.get(edge_attr) or bm.edges.layers.float.new(edge_attr)
+        for e in bm.edges:
+            if e.select: e[layer_e] = value           
+    if settings.affect_vertices:
+        layer_v = bm.verts.layers.float.get(vert_attr) or bm.verts.layers.float.new(vert_attr)
+        for v in bm.verts:
+            if v.select: v[layer_v] = value      
+    bmesh.update_edit_mesh(me)
+
+#OPERATORS
+class BUTTON_OT_WeightSet(Operator): #Crease/Bevel
+    bl_idname = "button.weight_set"
+    bl_label = "Set Weight"
+    bl_options = {'REGISTER', 'UNDO'}
+    value: FloatProperty() # type: ignore
+    mode: StringProperty() # type: ignore
     
-################################################
-############# Weight ### OPERATORS #############
-class BUTTON_OT_BevelWeight0(Operator):
-    ### buttom left = weith 0 ###
-    bl_idname = "button.bevel_weight_0"
-    bl_label = "Edge Bevel Weight 0.00"
-    bl_description = "Clear the Bevel Weight 0.00"
-        
     @classmethod
-    def poll(self, context):
+    def poll(cls, context):
         return context.object is not None and context.mode == 'EDIT_MESH'
-    
     def execute(self, context):
-        bpy.ops.transform.edge_bevelweight(value=-1)
+        if self.mode == "CREASE":
+            apply_weight_smart(context, self.value, "crease_edge", "crease_vert")
+        else:
+            apply_weight_smart(context, self.value, "bevel_weight_edge", "bevel_weight_vert")
         return {'FINISHED'}
 
-class BUTTON_OT_BevelWeight05(Operator):
-    ### buttom left = weith 05 ###
-    bl_idname = "button.bevel_weight_05"
-    bl_label = "Edge Bevel Weight 0.50"
-    bl_description = "Clear the Bevel Weight 0.50"
-    
-    @classmethod
-    def poll(self, context):
-        return context.object is not None and context.mode == 'EDIT_MESH'
-    
-    def execute(self, context):
-        bpy.ops.transform.edge_bevelweight(value=0.5)
-        return {'FINISHED'}
+class BUTTON_OT_QuickAction(Operator): #Smooth/Transform
+    bl_idname = "button.quick_action"
+    bl_label = "Quick Smooth Transform"
+    bl_options = {'REGISTER', 'UNDO'}
+    action: StringProperty() # type: ignore
 
-class BUTTON_OT_BevelWeight1(Operator):
-    ### buttom right = weith 1 ###
-    bl_idname = "button.bevel_weight_1"
-    bl_label = "Edge Bevel Weight 1.00"
-    bl_description = "Sets the Bevel Weight 1.00"
-    
     @classmethod
-    def poll(self, context):
+    def poll(cls, context):
         return context.object is not None and context.mode == 'EDIT_MESH'
-    
     def execute(self, context):
-        bpy.ops.transform.edge_bevelweight(value=1)
-        return {'FINISHED'}
+        obj = context.edit_object
+        me = obj.data
 
-
-################################################
-############# Crease ### OPERATORS #############
-class BUTTON_OT_Crease0(Operator):
-    ### buttom left = Crease 0 ###
-    bl_idname = "button.crease_0"
-    bl_label = "Edge Crease 0.00"
-    bl_description = "Sets the Crease 0.00"
-    
-    @classmethod
-    def poll(self, context):
-        return context.object is not None and context.mode == 'EDIT_MESH'
-    
-    def execute(self, context):
-        bpy.ops.transform.edge_crease(value=-1)
-        return {'FINISHED'}
-        
-class BUTTON_OT_Crease05(Operator):
-    ### buttom left = Crease 0 ###
-    bl_idname = "button.crease_05"
-    bl_label = "Edge Crease 0.00"
-    bl_description = "Sets the Crease 0.00"
-    
-    @classmethod
-    def poll(self, context):
-        return context.object is not None and context.mode == 'EDIT_MESH'
-    
-    def execute(self, context):
-        bpy.ops.transform.edge_crease(value=0.5)
-        return {'FINISHED'}
-    
-class BUTTON_OT_Crease1(Operator):
-    ### buttom right = Crease 1 ###
-    bl_idname = "button.crease_1"
-    bl_label = "Edge Crease 1.00"
-    bl_description = "Sets the Crease 1.00"
-    
-    @classmethod
-    def poll(self, context):
-        return context.object is not None and context.mode == 'EDIT_MESH'
-    
-    def execute(self, context):
-        bpy.ops.transform.edge_crease(value=1)
-        return {'FINISHED'}
-
-    
-###############################################################  
-############# Shade Smooth EDIT_MESH ### OPERATOR #############
-class BUTTON_OT_OperationShadeSmoothEdit(Operator):
-    bl_idname = "button.operation_shadesmooth_editmode"
-    bl_label = "Shade Smooth"
-    bl_description = "Adds Shade Smooth"
-    
-    @classmethod
-    def poll(self, context):
-        return context.object is not None and context.mode == 'EDIT_MESH'
-    
-    def execute(self, context):
-    ### The current mode is remembered: ###
-        mode = bpy.context.mode
-        bpy.ops.object.mode_set(mode='OBJECT')
-        if mode == 'EDIT_MESH':
-            bpy.ops.object.shade_smooth()
-            bpy.ops.object.mode_set(mode='EDIT')
+        #Auto Smooth (4.2 -> 5.0+)
+        if self.action == 'AUTO_SMOOTH':
+            try:
+                # Пробуем быстрый метод для 4.2/4.3
+                bpy.ops.mesh.shade_auto_smooth()
+            except (AttributeError, RuntimeError):
+                # Если оператор удален (Blender 5.0+) или выдал ошибку
+                bpy.ops.object.mode_set(mode='OBJECT')
+                bpy.ops.object.shade_auto_smooth()
+                bpy.ops.object.mode_set(mode='EDIT')
             return {'FINISHED'}
 
-class BUTTON_OT_OperationShadeFlatEdit(Operator):
-    bl_idname = "button.operation_shadeflat_editmode"
-    bl_label = "Shade Flat"
-    bl_description = "Adds Shade Flat"
-    
-    @classmethod
-    def poll(self, context):
-        return context.object is not None and context.mode == 'EDIT_MESH'
-    
-    def execute(self, context):
-    ### The current mode is remembered: ###
-        mode = bpy.context.mode
-        bpy.ops.object.mode_set(mode='OBJECT')
-        if mode == 'EDIT_MESH':
-            bpy.ops.object.shade_flat()
-            bpy.ops.object.mode_set(mode='EDIT')
-            return {'FINISHED'}
+        #Smooth/Flat/Transform
+        bm = bmesh.from_edit_mesh(me)
+
+        for f in bm.faces:
+            f.select = True
+        bmesh.update_edit_mesh(me)
+        if self.action == 'SMOOTH':
+            bpy.ops.mesh.faces_shade_smooth()
+        elif self.action == 'FLAT':
+            bpy.ops.mesh.faces_shade_flat()  
+        elif self.action in {'SCALE', 'ROTATION'}:
+            if self.action == 'SCALE': 
+                scale_matrix = mathutils.Matrix.Diagonal(obj.matrix_world.to_scale()).to_4x4()
+                bm.transform(scale_matrix)
+                obj.scale = (1.0, 1.0, 1.0)
+            elif self.action == 'ROTATION':
+                rotation_matrix = obj.matrix_world.to_quaternion().to_matrix().to_4x4()
+                bm.transform(rotation_matrix)
+                obj.rotation_euler = (0.0, 0.0, 0.0)
+            bmesh.update_edit_mesh(me)
+        return {'FINISHED'}
 
 
-#######################################################################
-############# Apply Scale-Rotation EDIT_MESH ### OPERATOR #############
-class BUTTON_OT_OperationApplyScaleEdit(Operator):
-    bl_idname = "button.operation_applyscale_editmode"
-    bl_label = "Apply Scale"
-    bl_description = "Apply reset Scale"
-    
-    @classmethod
-    def poll(self, context):
-        return context.object is not None and context.mode == 'EDIT_MESH'
-    
-    def execute(self, context):
-    ### The current mode is remembered: ###
-        mode = bpy.context.mode
-        bpy.ops.object.mode_set(mode='OBJECT')
-        if mode == 'EDIT_MESH':
-            bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
-            bpy.ops.object.mode_set(mode='EDIT')
-            return {'FINISHED'}
-        
-class BUTTON_OT_OperationApplyRotationEdit(Operator):
-    bl_idname = "button.operation_applyrotation_editmode"
-    bl_label = "Apply Rotation"
-    bl_description = "Apply reset Rotation"
-    
-    @classmethod
-    def poll(self, context):
-        return context.object is not None and context.mode == 'EDIT_MESH'
-    
-    def execute(self, context):
-    ### The current mode is remembered: ###
-        mode = bpy.context.mode
-        bpy.ops.object.mode_set(mode='OBJECT')
-        if mode == 'EDIT_MESH':
-            bpy.ops.object.transform_apply(location=False, rotation=True, scale=False)
-            bpy.ops.object.mode_set(mode='EDIT')
-            return {'FINISHED'}
 
-#####################################################Panel
-            # This menu right mouse click
-class VIEW3D_MT_edit_mesh_QickPanelButtons(Menu):
+#UI ELEMENTS
+class VIEW3D_MT_edit_mesh_QuickPanelButtons(Menu): #Context Menu
     bl_label = "QuickToolsEditMode"
-
-#Method draw
     def draw(self, context):
         layout = self.layout
-        layout.operator("button.crease_0", text="Edge Crease 0.00", icon=get_icon('TOOL_CREASE', 'MOD_SUBSURF'))
-        layout.operator("button.crease_05", text="Edge Crease 0.50", icon=get_icon('TOOL_CREASE', 'MOD_SUBSURF'))
-        layout.operator("button.crease_1", text="Edge Crease 1.00", icon=get_icon('TOOL_CREASE', 'MOD_SUBSURF'))
-        layout.separator() #Разделитель
-        layout.operator("button.bevel_weight_0", text="EdgeBevelWeight 0.00", icon=get_icon('TOOL_BEVEL', 'MOD_BEVEL'))
-        layout.operator("button.bevel_weight_05", text="EdgeBevelWeight 0.50", icon=get_icon('TOOL_BEVEL', 'MOD_BEVEL'))
-        layout.operator("button.bevel_weight_1", text="EdgeBevelWeight 1.00", icon=get_icon('TOOL_BEVEL', 'MOD_BEVEL'))
-        layout.separator() #Разделитель
-        layout.operator("button.operation_shadesmooth_editmode", text="Shadesmooth", icon=get_icon('SHADING_SMOOTH', 'MESH_ICOSPHERE'))
-        layout.operator("button.operation_shadeflat_editmode", text="Shadeflat", icon=get_icon('SHADING_FLAT', 'MESH_UVSPHERE'))
-        layout.separator() #Разделитель
-        layout.operator("button.operation_applyscale_editmode", text="ApplyScale", icon=get_icon('TRANSFORM_SCALE', 'FULLSCREEN_ENTER'))
-        layout.operator("button.operation_applyrotation_editmode", text="ApplyRotation", icon=get_icon('ORIENTATION_GLOBAL', 'ORIENTATION_GIMBAL'))
+        
+        #Crease
+        op = layout.operator("button.weight_set", text="Edge Crease 0.00", icon=get_icon('EDGE_CREASE', 'MOD_SUBSURF'))
+        op.value = 0.0; op.mode = "CREASE"
+        op = layout.operator("button.weight_set", text="Edge Crease 0.50", icon=get_icon('EDGE_CREASE', 'MOD_SUBSURF'))
+        op.value = 0.5; op.mode = "CREASE"
+        op = layout.operator("button.weight_set", text="Edge Crease 1.00", icon=get_icon('EDGE_CREASE', 'MOD_SUBSURF'))
+        op.value = 1.0; op.mode = "CREASE"
+        
+        layout.separator()
+        
+        #Bevel
+        op = layout.operator("button.weight_set", text="Edge Bevel 0.00", icon=get_icon('EDGE_BEVEL', 'MOD_BEVEL'))
+        op.value = 0.0; op.mode = "BEVEL"
+        op = layout.operator("button.weight_set", text="Edge Bevel 0.50", icon=get_icon('EDGE_BEVEL', 'MOD_BEVEL'))
+        op.value = 0.5; op.mode = "BEVEL"
+        op = layout.operator("button.weight_set", text="Edge Bevel 1.00", icon=get_icon('EDGE_BEVEL', 'MOD_BEVEL'))
+        op.value = 1.0; op.mode = "BEVEL"
+        
+        layout.separator()
+        
+        #Shade Auto Smooth
+        op = layout.operator("button.quick_action", text="Shade Auto Smooth", icon='MOD_SMOOTH')
+        op.action = 'AUTO_SMOOTH'
+        
+        layout.separator()
+        
+        #Shade Smooth/Flat
+        op = layout.operator("button.quick_action", text="Shade Smooth", icon=get_icon('SHADING_SMOOTH', 'MESH_UVSPHERE'))
+        op.action = 'SMOOTH'
+        op = layout.operator("button.quick_action", text="Shade Flat", icon=get_icon('SHADING_FLAT', 'MESH_ICOSPHERE'))
+        op.action = 'FLAT'
 
-#This function should be SEPARATE(раздел.черта).
-def draw_menu_append(self, context):
+        layout.separator()
+        
+        #Transform
+        op = layout.operator("button.quick_action", text="ApplyScale", icon=get_icon('TRANSFORM_SCALE', 'FULLSCREEN_ENTER'))
+        op.action = 'SCALE'
+        op = layout.operator("button.quick_action", text="ApplyRotation", icon=get_icon('ORIENTATION_GLOBAL', 'ORIENTATION_GIMBAL'))
+        op.action = 'ROTATION'
+
+def draw_menu_prepend(self, context):
     self.layout.separator()
-    self.layout.menu("VIEW3D_MT_edit_mesh_QickPanelButtons")
+    self.layout.menu("VIEW3D_MT_edit_mesh_QuickPanelButtons")
     self.layout.separator()
 
-#####################################################Panel
-                # This menu N-panel
-class BAR_PT_Panelis(Panel):
+class BAR_PT_Panelis(Panel): #n-panel
     bl_idname = 'VIEW3D_PT_example_panels'
     bl_label = 'Quick Tools Edit Modes'
     bl_category = 'QuickToolsEditMode'
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
     bl_options = {'DEFAULT_CLOSED'}
-    
     def draw(self, context):
         layout = self.layout
-        
-     ### Window, actives object ### 
         obj = context.object
-        
-        if context.mode != 'EDIT_MESH': #Проверка в режиме редактирования меша, если нет то:
+        settings = context.scene.quick_tools_settings
+
+        if context.mode != 'EDIT_MESH':
             box = layout.box()
-            box.alert = True  #Красит блок красным цветом
-            box.label(text="Go to in Edit Mode!", icon='ERROR') #Иконка и текст
-            return  #если не Edit, то убирает все что должно быть в режиме редактировании из панели
+            box.alert = True
+            box.label(text="Go to in Edit Mode!", icon='ERROR')
+            return
             
         if obj is not None:
             row = layout.row()
             row.label(text="Active object is: ", icon='OBJECT_DATA')
             box = layout.box()
-            box.label(text=obj.name, icon='EDITMODE_HLT') #Показывает выделенный меш
-            
-    ### Button visibility in edit mode ###
-        if context.object is not None and context.mode == 'EDIT_MESH':
-            layout.label(text="Speed Crease:")
-            col = layout.column()
-            spl = col.split(align = True)
-            #buttom left
-            op = spl.operator("button.crease_1", text="1.00")
-            #buttom midle
-            op = spl.operator("button.crease_05", text="0.50")
-            #buttom right
-            op = spl.operator("button.crease_0", text="0.00")
-            layout.label(text="Speed Edge Bevel Weight:")
-            col = layout.column()
-            #box = layout.box()
-            spl = col.split(align = True)
-            #buttom left
-            op = spl.operator("button.bevel_weight_1", text="1.00")
-            #buttom midle
-            op = spl.operator("button.bevel_weight_05", text="0.50")
-            #buttom right
-            op = spl.operator("button.bevel_weight_0", text="0.00")
-            col = layout.column()
+            box.label(text=obj.name, icon='EDITMODE_HLT')
 
-    ### Button visibility in edit mode ### Bevel Subdivision ###
-        if context.object is not None and context.mode == 'EDIT_MESH':
-            layout.label(text="Smoothing mode:")
-            col = layout.column()
-            spl = col.split(align = True)
-            op = spl.operator("button.operation_shadesmooth_editmode", text="ShadeSmooth")
-            op = spl.operator("button.operation_shadeflat_editmode", text="ShadeFlat")	
-            layout.label(text="Apply Mesh Transform:")
-            col = layout.column()
-            spl = col.split(align = True)
-            op = spl.operator("button.operation_applyscale_editmode", text="ApplyScale")
-            op = spl.operator("button.operation_applyrotation_editmode", text="ApplyRotation")		
+        main_box = layout.box()
+        main_box.label(text="Selection Data:", icon='OUTLINER_DATA_MESH')
+        row = main_box.row(align=True)
+        row.prop(settings, "affect_edges", toggle=True)
+        row.prop(settings, "affect_vertices", toggle=True)
 
-#####################################################################
-########## Update Panel Category ### in install addon panel##########
-panels = (BAR_PT_Panelis,)
+        main_box.separator()
 
+        #Crease
+        main_box.label(text="Edge Crease:", icon=get_icon('EDGE_CREASE', 'MOD_SUBSURF'))
+        col = main_box.column(align=True)
+        col.enabled = settings.affect_edges or settings.affect_vertices
+        spl = col.split(align=True)
+        op = spl.operator("button.weight_set", text="0.00"); op.value = 0.0; op.mode = "CREASE"
+        op = spl.operator("button.weight_set", text="0.50"); op.value = 0.5; op.mode = "CREASE"
+        op = spl.operator("button.weight_set", text="1.00"); op.value = 1.0; op.mode = "CREASE"
+
+        main_box.separator()
+
+        #Bevel
+        main_box.label(text="Edge Bevel Weight:", icon=get_icon('EDGE_BEVEL', 'MOD_BEVEL'))
+        col = main_box.column(align=True)
+        col.enabled = settings.affect_edges or settings.affect_vertices
+        spl = col.split(align=True)
+        op = spl.operator("button.weight_set", text="0.00"); op.value = 0.0; op.mode = "BEVEL"
+        op = spl.operator("button.weight_set", text="0.50"); op.value = 0.5; op.mode = "BEVEL"
+        op = spl.operator("button.weight_set", text="1.00"); op.value = 1.0; op.mode = "BEVEL"
+
+        #Smooth
+        layout.label(text="Smooth Tools:", icon='MOD_SMOOTH')
+        col = layout.column(align=True)
+        
+        # Кнопка Auto Smooth
+        op = col.operator("button.quick_action", text="Shade Auto Smooth")
+        op.action = 'AUTO_SMOOTH'
+        
+        # Ряд кнопок под ней
+        row = col.row(align=True)
+        op = row.operator("button.quick_action", text="Smooth"); op.action = 'SMOOTH'
+        op = row.operator("button.quick_action", text="Flat"); op.action = 'FLAT'
+
+        # Transform раздел
+        layout.label(text="Transform:")
+        col = layout.column(align=True)
+        spl = col.split(align=True)
+        op = spl.operator("button.quick_action", text="ApplyScale"); op.action = 'SCALE'
+        op = spl.operator("button.quick_action", text="ApplyRotation"); op.action = 'ROTATION'
+
+#Update Panel Category 
 def update_panel(self, context):
-    message = "Align Tools: Updating Panel locations has failed"
     try:
-        for panel in panels:
-            if "bl_rna" in panel.__dict__:
-                bpy.utils.unregister_class(panel)
-
-        for panel in panels:
-            panel.bl_category = context.preferences.addons[__name__].preferences.category
-            bpy.utils.register_class(panel)
-
+        bpy.utils.unregister_class(BAR_PT_Panelis)
+        BAR_PT_Panelis.bl_category = context.preferences.addons[__name__].preferences.category
+        bpy.utils.register_class(BAR_PT_Panelis)
     except Exception as e:
-        print("\n[{}]\n{}\n\nError:\n{}".format(__name__, message, e))
-        pass
-
+        print(f"Error updating panel category: {e}")
 
 class EditCategoryAddonUI(AddonPreferences):
     bl_idname = __name__
-
     category: StringProperty(
             name="Tab Category",
-            description="Choose a name for the category of the panel",
-            default="Edit",
+            default="QuickToolsEditMode",
             update=update_panel
-            )
+            ) # type: ignore
 
     def draw(self, context):
-        layout = self.layout
+        self.layout.prop(self, "category")
 
-        row = layout.row()
-        col = row.column()
-        col.label(text="Tab Category:")
-        col.prop(self, "category", text="")
-        
-################ END ### Category ### Update ### Panel ################
-#######################################################################
-
+#Registration
 CLASSES = [
-    BUTTON_OT_BevelWeight0,
-    BUTTON_OT_BevelWeight05,
-    BUTTON_OT_BevelWeight1,
-    BUTTON_OT_Crease0,
-    BUTTON_OT_Crease05,
-    BUTTON_OT_Crease1,
-    BUTTON_OT_OperationShadeSmoothEdit,
-    BUTTON_OT_OperationShadeFlatEdit,
-    BUTTON_OT_OperationApplyScaleEdit,
-    BUTTON_OT_OperationApplyRotationEdit,
-    BAR_PT_Panelis,
-    VIEW3D_MT_edit_mesh_QickPanelButtons, 
-#I know there's a mistake in the word, that's the way it's supposed to be :)
+    QuickToolsSettings, BUTTON_OT_WeightSet, BUTTON_OT_QuickAction,
+    BAR_PT_Panelis, VIEW3D_MT_edit_mesh_QuickPanelButtons, EditCategoryAddonUI
 ]
-    
-    ##############################################    
-    ###### registering and menu integration ######
+
 def register():
-    for cls in CLASSES:
-        register_class(cls)
-    ### Adding our wrapper function to the context menu ###
-    bpy.types.VIEW3D_MT_edit_mesh_context_menu.prepend(draw_menu_append)
+    for cls in CLASSES: bpy.utils.register_class(cls)
+    bpy.types.Scene.quick_tools_settings = PointerProperty(type=QuickToolsSettings)
+    bpy.types.VIEW3D_MT_edit_mesh_context_menu.prepend(draw_menu_prepend)
 
 def unregister():
-    ### Removing exactly the function that was added ###
-    bpy.types.VIEW3D_MT_edit_mesh_context_menu.remove(draw_menu_append)
-    for cls in reversed(CLASSES):
-        unregister_class(cls)
-    ###### unregistering and removing menus ######
-    ##############################################
+    bpy.types.VIEW3D_MT_edit_mesh_context_menu.remove(draw_menu_prepend)
+    for cls in reversed(CLASSES): bpy.utils.unregister_class(cls)
+    del bpy.types.Scene.quick_tools_settings
 
 if __name__ == '__main__':
     register()
