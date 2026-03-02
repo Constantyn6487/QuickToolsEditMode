@@ -56,7 +56,7 @@ While in **Edit Mesh** mode, right‑click in the 3D Viewport → open **QuickTo
 
 <div align="center">
 
-![description](https://github.com/Constantyn6487/link/blob/main/QTEM-Settings.png?raw)
+![description](https://github.com/Constantyn6487/link/blob/main/QTEM-Settings.png)
 
 </div>
 
