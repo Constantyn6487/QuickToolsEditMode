@@ -145,7 +145,7 @@ Bug reports, feature requests, and pull requests are welcome via the **Issues** 
 
 <div align="center">
 
-![description](https://github.com/Constantyn6487/Tutor_readme_outsidefile/blob/main/QTEM-Settings.png)
+![description](https://github.com/Constantyn6487/link/blob/main/QTEM-Settings.png?raw)
 
 </div>
 
