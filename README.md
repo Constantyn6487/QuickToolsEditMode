@@ -11,7 +11,7 @@
 
 **Quick Tools Edit Mode** is a compact toolbox for Blender that removes unnecessary clicks and pop‑up dialogs. All essential operations for weights, shading, and transforms are now reachable with a single click from the side panel or the context menu.
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > The addon works **exclusively in Edit Mode**. In Object Mode all UI elements are automatically hidden to keep the interface clean.
 
 ## 🚀 Core Features
