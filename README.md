@@ -1,5 +1,3 @@
-<div align="center">
-
 <details>
   <summary>🔽 Click to see the English translation. 🔽</summary>
 
@@ -32,10 +30,14 @@
 
 ### 💡 Brief reference for each operator  
 
+<div align="center">
+
 | Operator | ID | Parameters | What it does |
 |----------|----|------------|--------------|
 | **BUTTON_OT_WeightSet** | `button.weight_set` | `value` (float), `mode` (`CREASE`/`BEVEL`) | Assigns crease‑weight or bevel‑weight to the selected elements. |
 | **BUTTON_OT_QuickAction** | `button.quick_action` | `action` (`AUTO_SMOOTH`, `SMOOTH`, `FLAT`, `SCALE`, `ROTATION`) | Performs auto‑smooth, toggles shading, or “applies” scale/rotation to the mesh geometry. |
+
+</div>
 
 ---
 
@@ -91,7 +93,6 @@ Bug reports, feature requests, and pull requests are welcome via the **Issues** 
 
 </details>
 
-</div>
 
 <div align="center"><h1> 🛠 Quick Tools Edit Mode 🛠 </h1>
 
