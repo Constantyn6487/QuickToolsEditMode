@@ -1,7 +1,4 @@
 <details>
- <summary>🔽 Click to see the Russian/English translation. 🔽</summary>
-
-<details>
  <summary>🔽 Click to see the English translation. 🔽</summary>
 
  <div align="center"><h1> 🛠️ Quick Tools Edit Mode (v1.0) 🛠️ </h1>
@@ -70,5 +67,3 @@ This project is licensed under the **GNU General Public License v3.0**.
 
 ## 📜 Лицензия
 Этот проект лицензирован по лицензии **GNU General Public License v3.0**. 
-
-</details>
