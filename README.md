@@ -1,3 +1,19 @@
+# 🚀  [QuickToolsEditMode v184](https://github.com/Constantyn6487/QuickToolsEditMode/releases/download/v184/QuickToolsEditMode184.zip) 🔗
+
+### 🇷🇺 Текущий статус / 🇺🇸 Current Status
+**Ранняя версия для Blender v4.2+ (Early version for Blender v4.2+)**
+Аддон находится в активной разработке. Текущие задачи: / The addon is under active development. Current tasks:
+
+*   **RU:** Совместимость с предыдущими версиями Blender.
+    **EN:** Backward compatibility with older Blender versions.
+*   **RU:** Полная русификация интерфейса.
+    **EN:** Full localization (Russian language support).
+*   **RU:** Система автоматических обновлений.
+    **EN:** Integrated auto-update system.
+*   **RU:** Исправление мелких багов и полировка.
+    **EN:** Minor bug fixes and general polishing.
+
+---
 <details>
   <summary>🔽 Click to see the English translation. 🔽</summary>
 
