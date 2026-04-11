@@ -1,30 +1,13 @@
-# 🚀  [QuickToolsEditMode v184](https://github.com/Constantyn6487/QuickToolsEditMode/releases/download/v184/QuickToolsEditMode184.zip) 🔗
-
-### 🇷🇺 Текущий статус / 🇺🇸 Current Status
-**Ранняя версия для Blender v4.2+ (Early version for Blender v4.2+)**
-Аддон находится в активной разработке. Текущие задачи: / The addon is under active development. Current tasks:
-
-*   **RU:** Совместимость с предыдущими версиями Blender.
-    **EN:** Backward compatibility with older Blender versions.
-*   **RU:** Полная русификация интерфейса.
-    **EN:** Full localization (Russian language support).
-*   **RU:** Система автоматических обновлений.
-    **EN:** Integrated auto-update system.
-*   **RU:** Исправление мелких багов и полировка.
-    **EN:** Minor bug fixes and general polishing.
-
----
-## <div align="center"><h1>[🔗 🛠 Quick Tools Edit Mode (2.0) 🛠 ](https://github.com/Constantyn6487/QuickToolsEditMode/releases/download/v2-0-20260217up/QuickToolsEditMode.zip)</h1></div>
 <details>
-  <summary><div align="center"><h1>🔽 Click to see the English translation. 🔽</h1></div></summary>
+  <summary>🔽 Click to see the English translation. 🔽</summary>
 
-<div align="center">
+<div align="center"><h1> 🛠 Quick Tools Edit Mode (2.1) 🛠 </h1>
 
-![description](https://github.com/Constantyn6487/link/blob/main/preview%202.0%20Eng.png?raw=true) 
+![description](https://github.com/Constantyn6487/link/blob/main/preview%202.1%20eng.png?raw=true) 
 
 </div>
 
-**Quick Tools Edit Mode** is a compact toolbox for Blender 3.6+ that removes unnecessary clicks and pop‑up dialogs. All essential operations for weights, shading, and transforms are now reachable with a single click from the side panel or the context menu.
+**Quick Tools Edit Mode** is a compact toolbox for Blender that removes unnecessary clicks and pop‑up dialogs. All essential operations for weights, shading, and transforms are now reachable with a single click from the side panel or the context menu.
 
 > **⚠️ [!IMPORTANT]**
 
@@ -39,6 +22,7 @@
 | **Selection Data**| Switches **Edges** и **Vertices**. They determine which elements of the mesh (edges/vertices) actions are applied to.|
 | **Edge Crease** | Set crease weight (0.00 / 0.50 / 1.00) |
 | **Edge Bevel Weight** | Set bevel weight (0.00 / 0.50 / 1.00) |
+| **Shade Auto Smooth** | Quick auto‑smooth setup (compatible with Blender 4.2+) |
 | **Shade Smooth / Flat** | Instantly switch shading type while staying in Edit Mode |
 | **Apply Scale/Rotation** | Apply scale or rotation to geometry without leaving Edit Mode |
 
@@ -91,7 +75,7 @@ Select a mesh, go to `Edit Mesh` mode, right‑click (**RMB**) in the 3D Viewpor
 
 <div align="center">
 
-![description](https://github.com/Constantyn6487/link/blob/main/QTEM_2.0-Settings.png?raw=true)
+![description](https://github.com/Constantyn6487/link/blob/main/QTEM-Settings.png?raw=true)
 
 </div>
 
@@ -164,12 +148,12 @@ Select a mesh, go to `Edit Mesh` mode, right‑click (**RMB**) in the 3D Viewpor
 </details>
 
 
-<div align="center">
+<div align="center"><h1> 🛠 Quick Tools Edit Mode (2.1) 🛠 </h1>
 
-![description](https://github.com/Constantyn6487/link/blob/main/preview%202.0%20Rus.png?raw=true)
+![description](https://github.com/Constantyn6487/link/blob/main/preview%202.1%20rus.png?raw=true)
 </div>
 
-**Quick Tools Edit Mode** — это компактный набор инструментов для Blender 3.6+, который избавляет от лишних кликов и всплывающих окон. Все ключевые операции по весам (weights), затенению (shading) и трансформациям теперь доступны в один клик прямо из боковой панели или контекстного меню.
+**Quick Tools Edit Mode** — это компактный набор инструментов для Blender, который избавляет от лишних кликов и всплывающих окон. Все ключевые операции по весам (weights), затенению (shading) и трансформациям теперь доступны в один клик прямо из боковой панели или контекстного меню.
 
 > [!IMPORTANT]
 > Аддон работает **исключительно в Edit Mode**. В объектном режиме элементы управления автоматически скрываются, чтобы не загромождать интерфейс.
@@ -183,6 +167,7 @@ Select a mesh, go to `Edit Mesh` mode, right‑click (**RMB**) in the 3D Viewpor
 | **Selection Data**| Переключатели **Edges** и **Vertices**. Определяют, к каким элементам меша (рёбра/вершины) применяются действия.|
 | **Edge Crease** | Установка веса сгиба (0.00 / 0.50 / 1.00) |
 | **Edge Bevel Weight** | Установка веса фаски (0.00 / 0.50 / 1.00) | 
+| **Shade Auto Smooth** | Быстрая настройка автосглаживания (совместимо с Blender 4.2+) |
 | **Shade Smooth / Flat** | Мгновенное переключение типа затенения из Edit Mode |
 | **Apply Scale/Rotation** | Применение трансформаций к геометрии, не выходя из Edit Mode |
 
@@ -228,7 +213,7 @@ Select a mesh, go to `Edit Mesh` mode, right‑click (**RMB**) in the 3D Viewpor
 
 <div align="center">
 
-![description](https://github.com/Constantyn6487/link/blob/main/QTEM_2.0-Settings.png?raw=true)
+![description](https://github.com/Constantyn6487/link/blob/main/QTEM-Settings.png?raw)
 
 </div>
 
