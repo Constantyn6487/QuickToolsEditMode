@@ -35,7 +35,6 @@ from bpy.props import (StringProperty, FloatProperty, BoolProperty, IntProperty,
 from bpy.utils import (register_class, unregister_class)
 from . import donates
 
-# Попытка импорта внешних модулей
 try:
     from . import translations
     from . import addon_updater_ops
@@ -129,16 +128,11 @@ def apply_weight_smart(context, value, edge_attr, vert_attr):
     bmesh.update_edit_mesh(me)
     return {'FINISHED'}
 
-# ------------------------------------------------------------
-#  Compatibility layer – выбираем реализацию apply_weight_smart
-# ------------------------------------------------------------
+# If Blender < 4.0 is running, we replace the function with an implementation from `bmesh_v3.py `, where API layers compatible with 3.6 are used.
 import bpy
-# Если запущен Blender < 4.0, подменяем функцию реализацией
-# из `bmesh_v3.py`, где использованы API‑слои, совместимые с 3.6.
 if bpy.app.version < (4, 0, 0):
     # pylint: disable=unused-import
     from .bmesh_v3 import apply_weight_smart as apply_weight_smart  # type: ignore
-# ------------------------------------------------------------
 
 #OPERATORS
 class BUTTON_OT_WeightSet(Operator):
@@ -324,7 +318,7 @@ def draw_menu_prepend(self, context):
     self.layout.menu("VIEW3D_MT_edit_mesh_QuickPanelButtons")
     self.layout.separator()
 
-# --- 6. REGISTRATION ---
+#REGISTRATION
 
 CLASSES = [
     QuickToolsEditModePreferences,
