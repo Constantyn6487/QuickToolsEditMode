@@ -14,7 +14,7 @@
     **EN:** Minor bug fixes and general polishing.
 
 ---
-## <div align="center"><h1>[🔗 🛠 Quick Tools Edit Mode (2.0) 🛠 🔗](https://github.com/Constantyn6487/QuickToolsEditMode/releases/download/v2-0-20260217up/QuickToolsEditMode.zip)</h1></div>
+### <div align="center"><h1>[🔗 🛠 Quick Tools Edit Mode (2.0) 🛠 🔗](https://github.com/Constantyn6487/QuickToolsEditMode/releases/download/v2-0-20260217up/QuickToolsEditMode.zip)</h1></div>
 <details>
   <summary><div align="center"><h1>🔽 Click to see the English translation. 🔽</h1></div></summary>
 
