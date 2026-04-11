@@ -14,7 +14,7 @@
     **EN:** Minor bug fixes and general polishing.
 
 ---
-## <div align="center"><h1>[🔗 🛠 Quick Tools Edit Mode (2.0) 🛠 ](https://github.com/Constantyn6487/QuickToolsEditMode/releases/download/v2-0-20260217up/QuickToolsEditMode.zip)</h1></div>
+## <div align="center"><h1>[🔗 🛠 Quick Tools Edit Mode (2.0) 🛠 🔗](https://github.com/Constantyn6487/QuickToolsEditMode/releases/download/v2-0-20260217up/QuickToolsEditMode.zip)</h1></div>
 <details>
   <summary><div align="center"><h1>🔽 Click to see the English translation. 🔽</h1></div></summary>
 
@@ -24,7 +24,7 @@
 
 </div>
 
-**Quick Tools Edit Mode** is a compact toolbox for Blender 3.6+ that removes unnecessary clicks and pop‑up dialogs. All essential operations for weights, shading, and transforms are now reachable with a single click from the side panel or the context menu.
+**Quick Tools Edit Mode** is a compact toolbox for Blender that removes unnecessary clicks and pop‑up dialogs. All essential operations for weights, shading, and transforms are now reachable with a single click from the side panel or the context menu.
 
 > **⚠️ [!IMPORTANT]**
 
@@ -156,8 +156,11 @@ Select a mesh, go to `Edit Mesh` mode, right‑click (**RMB**) in the 3D Viewpor
 
 * 🐱‍💻 Questions and bug reports are welcome via the **Issues** section of this repository.*  
 * 💰 If you like the add‑on and would like to support the developer financially, you can do so on [Boosty](https://boosty.to/constantiniy6487/single-payment/donation/791948/target?share=target_link).*
+ ## 🛎 Versioning
 
- 
+* We tag releases using a hybrid **Semantic + Calendar** scheme. 
+* For the exact rules see the [VERSIONING.md](VERSIONING.md) file.
+
 
 ---  
 
@@ -169,7 +172,7 @@ Select a mesh, go to `Edit Mesh` mode, right‑click (**RMB**) in the 3D Viewpor
 ![description](https://github.com/Constantyn6487/link/blob/main/preview%202.0%20Rus.png?raw=true)
 </div>
 
-**Quick Tools Edit Mode** — это компактный набор инструментов для Blender 3.6+, который избавляет от лишних кликов и всплывающих окон. Все ключевые операции по весам (weights), затенению (shading) и трансформациям теперь доступны в один клик прямо из боковой панели или контекстного меню.
+**Quick Tools Edit Mode** — это компактный набор инструментов для Blender, который избавляет от лишних кликов и всплывающих окон. Все ключевые операции по весам (weights), затенению (shading) и трансформациям теперь доступны в один клик прямо из боковой панели или контекстного меню.
 
 > [!IMPORTANT]
 > Аддон работает **исключительно в Edit Mode**. В объектном режиме элементы управления автоматически скрываются, чтобы не загромождать интерфейс.
@@ -288,5 +291,9 @@ Select a mesh, go to `Edit Mesh` mode, right‑click (**RMB**) in the 3D Viewpor
 ## 🔧 Разработка и вклад
 **📜 Лицензия:** GNU General Public License v3.0.
 
-* 🐱‍💻 Вопросы и сообщения об ошибках принимаются через раздел **Issues** в данном репозитории.*
-* 💰 Если вам понравился Аддон и у вас появилось желание поддержать разработчика денюшкой, то это можно сделать на [boosty](https://boosty.to/constantiniy6487/single-payment/donation/791948/target?share=target_link). *
+* 🐱‍💻 Вопросы и сообщения об ошибках принимаются через раздел **Issues** в данном репозитории.
+* 💰 Если вам понравился Аддон и у вас появилось желание поддержать разработчика денюшкой, то это можно сделать на [boosty](https://boosty.to/constantiniy6487/single-payment/donation/791948/target?share=target_link).
+ ## 🛎 Versioning
+
+* We tag releases using a hybrid **Semantic + Calendar** scheme. 
+* For the exact rules see the [VERSIONING.md](VERSIONING.md) file.
