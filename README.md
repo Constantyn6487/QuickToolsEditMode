@@ -3,7 +3,7 @@
 
 <div align="center"><h1> 🛠 Quick Tools Edit Mode (2.0) 🛠 </h1>
 
-![description](https://github.com/Constantyn6487/link/blob/main/preview%202.1%20eng.png?raw=true) 
+![description](https://github.com/Constantyn6487/link/blob/main/preview%202.0%20Eng.png?raw=true) 
 
 </div>
 
@@ -74,7 +74,7 @@ Select a mesh, go to `Edit Mesh` mode, right‑click (**RMB**) in the 3D Viewpor
 
 <div align="center">
 
-![description](https://github.com/Constantyn6487/link/blob/main/QTEM-Settings.png?raw=true)
+![description](https://github.com/Constantyn6487/link/blob/main/QTEM_2.0-Settings.png?raw=true)
 
 </div>
 
@@ -149,7 +149,7 @@ Select a mesh, go to `Edit Mesh` mode, right‑click (**RMB**) in the 3D Viewpor
 
 <div align="center"><h1> 🛠 Quick Tools Edit Mode (2.0) 🛠 </h1>
 
-![description](https://github.com/Constantyn6487/link/blob/main/preview%202.1%20rus.png?raw=true)
+![description](https://github.com/Constantyn6487/link/blob/main/preview%202.0%20Rus.png?raw=true)
 </div>
 
 **Quick Tools Edit Mode** — это компактный набор инструментов для Blender, который избавляет от лишних кликов и всплывающих окон. Все ключевые операции по весам (weights), затенению (shading) и трансформациям теперь доступны в один клик прямо из боковой панели или контекстного меню.
