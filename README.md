@@ -211,7 +211,7 @@ Select a mesh, go to `Edit Mesh` mode, right‑click (**RMB**) in the 3D Viewpor
 
 <div align="center">
 
-![description](https://github.com/Constantyn6487/link/blob/main/QTEM-Settings.png?raw)
+![description](https://github.com/Constantyn6487/link/blob/main/QTEM_2.0-Settings.png?raw=true)
 
 </div>
 
