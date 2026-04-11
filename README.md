@@ -24,7 +24,7 @@
 
 </div>
 
-**Quick Tools Edit Mode** is a compact toolbox for Blender that removes unnecessary clicks and pop‑up dialogs. All essential operations for weights, shading, and transforms are now reachable with a single click from the side panel or the context menu.
+**Quick Tools Edit Mode** is a compact toolbox for Blender 3.6+ that removes unnecessary clicks and pop‑up dialogs. All essential operations for weights, shading, and transforms are now reachable with a single click from the side panel or the context menu.
 
 > **⚠️ [!IMPORTANT]**
 
@@ -169,7 +169,7 @@ Select a mesh, go to `Edit Mesh` mode, right‑click (**RMB**) in the 3D Viewpor
 ![description](https://github.com/Constantyn6487/link/blob/main/preview%202.0%20Rus.png?raw=true)
 </div>
 
-**Quick Tools Edit Mode** — это компактный набор инструментов для Blender, который избавляет от лишних кликов и всплывающих окон. Все ключевые операции по весам (weights), затенению (shading) и трансформациям теперь доступны в один клик прямо из боковой панели или контекстного меню.
+**Quick Tools Edit Mode** — это компактный набор инструментов для Blender 3.6+, который избавляет от лишних кликов и всплывающих окон. Все ключевые операции по весам (weights), затенению (shading) и трансформациям теперь доступны в один клик прямо из боковой панели или контекстного меню.
 
 > [!IMPORTANT]
 > Аддон работает **исключительно в Edit Mode**. В объектном режиме элементы управления автоматически скрываются, чтобы не загромождать интерфейс.
