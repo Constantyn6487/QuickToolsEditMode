@@ -1,4 +1,4 @@
-# 🚀  [QuickToolsEditMode v184](https://github.com/Constantyn6487/QuickToolsEditMode/releases/download/v184/QuickToolsEditMode184.zip) 🔗
+# 🚀  [QuickToolsEditMode v2.1 pre](https://github.com/Constantyn6487/QuickToolsEditMode/releases/download/v2-1-20260304up_pre/QuickToolsEditMode.zip) 🔗
 
 ### 🇷🇺 Текущий статус / 🇺🇸 Current Status
 **Ранняя версия для Blender v4.2+ (Early version for Blender v4.2+)**
