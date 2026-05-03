@@ -1,0 +1,77 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Blender 3.6",
+            "type": "shell",
+            "command": "E:\\Graphics\\ProgramGR\\Blender_Launcher_v2.6.1\\stable\\blender-3.6.23-lts.e467db79ca8c\\blender.exe",
+            "args": ["--python", "${file}"],
+            "group": "none",
+            "presentation": { "reveal": "always", "panel": "new" }
+        },
+        {
+            "label": "Run Blender 4.0",
+            "type": "shell",
+            "command": "E:\\Graphics\\ProgramGR\\Blender_Launcher_v2.6.1\\stable\\blender-4.0.2-stable.9be62e85b727\\blender.exe",
+            "args": ["--python", "${file}"],
+            "group": "none",
+            "presentation": { "reveal": "always", "panel": "new" }
+        },
+        {
+            "label": "Run Blender 4.1",
+            "type": "shell",
+            "command": "E:\\Graphics\\ProgramGR\\Blender_Launcher_v2.6.1\\stable\\blender-4.1.1-stable.e1743a0317bc\\blender.exe",
+            "args": ["--python", "${file}"],
+            "group": "none",
+            "presentation": { "reveal": "always", "panel": "new" }
+        },
+        {
+            "label": "Run Blender 4.2",
+            "type": "shell",
+            "command": "E:\\Graphics\\ProgramGR\\Blender_Launcher_v2.6.1\\stable\\blender-4.2.20-lts.6df22026265d\\blender.exe",
+            "args": ["--python", "${file}"],
+            "group": "none",
+            "presentation": { "reveal": "always", "panel": "new" }
+        },
+        {
+            "label": "Run Blender 4.3",
+            "type": "shell",
+            "command": "E:\\Graphics\\ProgramGR\\Blender_Launcher_v2.6.1\\stable\\blender-4.3.0-stable.2b18cad88b13\\blender.exe",
+            "args": ["--python", "${file}"],
+            "group": "none",
+            "presentation": { "reveal": "always", "panel": "new" }
+        },
+        {
+            "label": "Run Blender 4.4",
+            "type": "shell",
+            "command": "E:\\Graphics\\ProgramGR\\Blender_Launcher_v2.6.1\\stable\\blender-4.4.0-stable.05377985c527\\blender.exe",
+            "args": ["--python", "${file}"],
+            "group": "none",
+            "presentation": { "reveal": "always", "panel": "new" }
+        },
+        {
+            "label": "Run Blender 4.5",
+            "type": "shell",
+            "command": "E:\\Graphics\\ProgramGR\\Blender_Launcher_v2.6.1\\stable\\blender-4.5.0-lts.8cb6b388974a\\blender.exe",
+            "args": ["--python", "${file}"],
+            "group": "none",
+            "presentation": { "reveal": "always", "panel": "new" }
+        },
+        {
+            "label": "Run Blender 5.0",
+            "type": "shell",
+            "command": "E:\\Graphics\\ProgramGR\\Blender_Launcher_v2.6.1\\stable\\blender-5.0.1-stable.a3db93c5b259\\blender.exe",
+            "args": ["--python", "${file}"],
+            "group": "none",
+            "presentation": { "reveal": "always", "panel": "new" }
+        },
+        {
+            "label": "Run Blender 5.1",
+            "type": "shell",
+            "command": "E:\\Graphics\\ProgramGR\\Blender_Launcher_v2.6.1\\stable\\blender-5.1.1-stable.b70da489d7f4\\blender.exe",
+            "args": ["--python", "${file}"],
+            "group": "none",
+            "presentation": { "reveal": "always", "panel": "new" }
+        }
+    ]
+}

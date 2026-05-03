@@ -1,19 +1,4 @@
-# 🚀  [QuickToolsEditMode v2.1.20260304nup pre](https://github.com/Constantyn6487/QuickToolsEditMode/releases/download/v2-1-20260304nup/QuickToolsEditMode.zip)🔗
 
-### 🇷🇺 Текущий статус / 🇺🇸 Current Status
-**Ранняя версия для Blender v4.2+ (Early version for Blender v4.2+)**
-Аддон находится в активной разработке. Текущие задачи: / The addon is under active development. Current tasks:
-
-*   **RU:** Совместимость с предыдущими версиями Blender.
-    **EN:** Backward compatibility with older Blender versions.
-*   **RU:** Полная русификация интерфейса.
-    **EN:** Full localization (Russian language support).
-*   **RU:** Система автоматических обновлений.
-    **EN:** Integrated auto-update system.
-*   **RU:** Исправление мелких багов и полировка.
-    **EN:** Minor bug fixes and general polishing.
-
----
 ### <div align="center"><h1>[ 🛠 QuickToolsEditMode (v2.0.20260217up)🔗](https://github.com/Constantyn6487/QuickToolsEditMode/releases/download/v2-0-20260217up/QuickToolsEditMode.zip)</h1></div>
 <details>
   <summary><div align="center"><h1>🔽 Click to see the English translation. 🔽</h1></div></summary>
@@ -50,11 +35,19 @@
 
 <div align="center">
 
-| Operator | ID | Parameters | What it does |
-|----------|----|------------|--------------|
-| **QuickToolsSettings** | `scene.quick_tools_settings` | `affect_edges` (bool, default: True), `affect_vertices` (bool, default: False) | Settings that determine which elements of the mesh (edges/vertices) actions are applied to. |
-| **BUTTON_OT_WeightSet** | `button.weight_set` | `value` (float), `mode` (`CREASE`/`BEVEL`) | Assigns crease‑weight or bevel‑weight to the selected elements. |
-| **BUTTON_OT_QuickAction** | `button.quick_action` | `action` (`AUTO_SMOOTH`, `SMOOTH`, `FLAT`, `SCALE`, `ROTATION`) | Performs auto‑smooth, toggles shading, or “applies” scale/rotation to the mesh geometry. |
+| Operator | ID | Parameters | Description |
+| :--- | :--- | :--- | :--- |
+| **QuickToolsSettings** | `scene.quick_tools_settings` | `affect_edges` (bool), `affect_vertices` (bool) | Global filters: define which mesh elements (edges or vertices) are affected by weight operators. |
+| **BUTTON_OT_WeightSet** | `button.weight_set` | `value` (float), `mode` (`CREASE` / `BEVEL`) | Sets the Bevel Weight or Crease value for selected elements. |
+| **BUTTON_OT_QuickAction** | `button.quick_action` | `action` (see below ↓) | Multi-purpose operator for rapid geometry and shading actions. |
+| ➔ *Action: Auto Smooth* | `AUTO_SMOOTH` | — | Applies angle-based smoothing (for 3.6) or triggers `Shade Smooth by Angle` (for 4.1+). |
+| ➔ *Action: Smooth* | `SMOOTH` | — | Sets smooth shading (`shade_smooth`) for all selected faces. |
+| ➔ *Action: Flat* | `FLAT` | — | Sets flat shading (`shade_flat`) for all selected faces. |
+| ➔ *Action: Scale* | `SCALE` | — | "Bakes" the object's scale into the geometry (Apply Scale) without leaving Edit Mode. |
+| ➔ *Action: Rotation* | `ROTATION` | — | "Bakes" the object's rotation into the geometry (Apply Rotation) without leaving Edit Mode. |
+| **AddonUpdaterCheckNow**| `addon_updater.check_now` | — | Forcefully checks for available updates in the remote repository. |
+| **AddonUpdaterUpdate** | `addon_updater.update` | — | Downloads the new version, creates a backup of the current one, and updates the files. |
+
 
 </div>
 
@@ -196,10 +189,18 @@ Select a mesh, go to `Edit Mesh` mode, right‑click (**RMB**) in the 3D Viewpor
 ### 💡 Краткая справка по каждому оператору  
 
 | Оператор | ID | Параметры | Что делает |
-|----------|----|-----------|------------|
-| **QuickToolsSettings** | `scene.quick_tools_settings` | `affect_edges` (bool, default: True), `affect_vertices` (bool, default: False) | Настройки, определяющие, к каким элементам меша (рёбра/вершины) применяются действия. |
-| **BUTTON_OT_WeightSet** | `button.weight_set` | `value` (float), `mode` (`CREASE`/`BEVEL`) | Устанавливает crease‑weight или bevel‑weight выбранным элементам. |
-| **BUTTON_OT_QuickAction** | `button.quick_action` | `action` (`AUTO_SMOOTH`, `SMOOTH`, `FLAT`, `SCALE`, `ROTATION`) | Выполняет авто‑сглаживание, переключает shading, либо «применяет» масштаб/вращение к геометрии. |
+| :--- | :--- | :--- | :--- |
+| **QuickToolsSettings** | `scene.quick_tools_settings` | `affect_edges` (bool), `affect_vertices` (bool) | Глобальные фильтры: определяют, на какие элементы (рёбра или вершины) будут влиять операторы весов. |
+| **BUTTON_OT_WeightSet** | `button.weight_set` | `value` (float), `mode` (`CREASE` / `BEVEL`) | Устанавливает значение веса фаски (Bevel Weight) или остроты (Crease) для выбранных элементов. |
+| **BUTTON_OT_QuickAction** | `button.quick_action` | `action` (см. ниже ↓) | Многофункциональный оператор для быстрых действий с геометрией и шейдингом. |
+| ➔ *Action: Auto Smooth* | `AUTO_SMOOTH` | — | Применяет сглаживание по углу (для 3.6) или вызывает `Shade Smooth by Angle` (для 4.1+). |
+| ➔ *Action: Smooth* | `SMOOTH` | — | Устанавливает плавное затенение (`shade_smooth`) для всех выбранных граней. |
+| ➔ *Action: Flat* | `FLAT` | — | Устанавливает плоское затенение (`shade_flat`) для всех выбранных граней. |
+| ➔ *Action: Scale* | `SCALE` | — | «Запекает» масштаб объекта в геометрию (Apply Scale), не выходя из режима редактирования. |
+| ➔ *Action: Rotation* | `ROTATION` | — | «Запекает» вращение объекта в геометрию (Apply Rotation), не выходя из режима редактирования. |
+| **AddonUpdaterCheckNow**| `addon_updater.check_now` | — | Принудительно запускает проверку наличия обновлений в удаленном репозитории. |
+| **AddonUpdaterUpdate** | `addon_updater.update` | — | Скачивает новую версию аддона, создает бэкап текущей и выполняет обновление файлов. |
+
 
 ---
 ### 🔄 Поддержка нескольких версий Blender (Cross-version API)

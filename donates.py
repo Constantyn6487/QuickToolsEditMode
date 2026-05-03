@@ -23,7 +23,6 @@ class WM_OT_OpenDonateLink(bpy.types.Operator):
     bl_label = "Support the project"
     bl_description = "Opens the Boosty donation page in the browser."
     
-    # Сюда вставьте вашу ссылку (Boosty/DonationAlerts)
     url: bpy.props.StringProperty(default="https://boosty.to/constantiniy6487/single-payment/donation/791948/target?share=target_link") # type: ignore vscode
 
     def execute(self, context):
@@ -35,11 +34,7 @@ class WM_OT_OpenDonateLink(bpy.types.Operator):
     @classmethod
     def description(cls, context, properties):
         msg = "Opens the Boosty donation page in the browser."
-        # ПРОВЕРКА: Если галочка Tooltips выключена, возвращаем английский текст
-        if not context.preferences.view.use_translate_tooltips:
-            return msg
-        
-        return bpy.app.translations.pgettext(msg)
+        return qt_main.get_tooltip_text(context, msg) # type: ignore vscode
 
 def register():
     bpy.utils.register_class(WM_OT_OpenDonateLink)
