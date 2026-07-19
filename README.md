@@ -153,7 +153,7 @@ Select a mesh, go to `Edit Mesh` mode, right‑click (**RMB**) in the 3D Viewpor
 
 * We tag releases using a hybrid **Semantic + Calendar** scheme. 
 * For the exact rules see the [VERSIONING.md](VERSIONING.md) file.
-
+* [Releases](https://github.com/Constantyn6487/QuickToolsEditModes/releases)
 
 ---  
 
@@ -298,3 +298,4 @@ Select a mesh, go to `Edit Mesh` mode, right‑click (**RMB**) in the 3D Viewpor
 
 * We tag releases using a hybrid **Semantic + Calendar** scheme. 
 * For the exact rules see the [VERSIONING.md](VERSIONING.md) file.
+* [Releases](https://github.com/Constantyn6487/QuickToolsEditModes/releases)
